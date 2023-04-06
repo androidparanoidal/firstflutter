@@ -13,8 +13,7 @@ void main() {
         backgroundColor: Colors.grey[400],
         body: Center(
           child: Image(
-            image: NetworkImage(
-                'http://3.bp.blogspot.com/-qOJUxvEhU6U/UR9uIryVwkI/AAAAAAAAAHM/zbpMwyNnLOU/s1600/Immagine+010.jpg'),
+            image: AssetImage('images/bing.png'),
           ),
         ),
       ),
