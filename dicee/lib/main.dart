@@ -4,10 +4,10 @@ void main() {
   return runApp(
     MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.red,
         appBar: AppBar(
-          title: Text('Dicee'),
-          backgroundColor: Colors.blue,
+          title: Text('Dice'),
+          backgroundColor: Colors.red,
         ),
         body: DicePage(),
       ),
@@ -18,6 +18,17 @@ void main() {
 class DicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Image.asset('images/dice1.png'),
+          ),
+          Expanded(
+            child: Image.asset('images/dice2.png'),
+          ),
+        ],
+      ),
+    );
   }
 }
