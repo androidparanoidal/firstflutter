@@ -7,10 +7,19 @@ void main() {
         backgroundColor: Colors.blue,
         appBar: AppBar(
           title: const Text('Ask Me Anything'),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.blue[800],
         ),
-        //body: DicePage(),
+        body: BallPage(),
       ),
     ),
   );
+}
+
+class BallPage extends StatelessWidget {
+  const BallPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
 }
