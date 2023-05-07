@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'question.dart';
 
 void main() => runApp(Quizzler());
 
@@ -25,15 +26,12 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Widget> scores = [
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.close,
-      color: Colors.red,
-    ),
+  int question_num = 0;
+  List<Widget> scores = [];
+  List<Question> questionBank = [
+    Question(q: 'Вопрос 1', a: false),
+    Question(q: 'Вопрос 2', a: true),
+    Question(q: 'Вопрос 3', a: true)
   ];
 
   @override
@@ -48,7 +46,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                questionBank[question_num].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -77,11 +75,15 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool correctAnswer = questionBank[question_num].questionAnswer;
+
+                if (correctAnswer == true) {
+                  print('user got it right');
+                } else {
+                  print('user got it wrong');
+                }
                 setState(() {
-                  scores.add(Icon(
-                    Icons.check,
-                    color: Colors.green,
-                  ));
+                  question_num++;
                 });
               },
             ),
@@ -105,7 +107,17 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked false.
+                bool correctAnswer = questionBank[question_num].questionAnswer;
+
+                if (correctAnswer == false) {
+                  print('user got it right');
+                } else {
+                  print('user got it wrong');
+                }
+
+                setState(() {
+                  question_num++;
+                });
               },
             ),
           ),
