@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+import 'quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(Quizzler());
 
@@ -26,13 +28,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  int question_num = 0;
   List<Widget> scores = [];
-  List<Question> questionBank = [
-    Question(q: 'Вопрос 1', a: false),
-    Question(q: 'Вопрос 2', a: true),
-    Question(q: 'Вопрос 3', a: true)
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +42,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionBank[question_num].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -75,7 +71,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = questionBank[question_num].questionAnswer;
+                bool correctAnswer = quizBrain.getCorrectAnswer();
 
                 if (correctAnswer == true) {
                   print('user got it right');
@@ -83,7 +79,7 @@ class _QuizPageState extends State<QuizPage> {
                   print('user got it wrong');
                 }
                 setState(() {
-                  question_num++;
+                  quizBrain.nextQuestion();
                 });
               },
             ),
@@ -107,7 +103,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = questionBank[question_num].questionAnswer;
+                bool correctAnswer = quizBrain.getCorrectAnswer();
 
                 if (correctAnswer == false) {
                   print('user got it right');
@@ -116,7 +112,7 @@ class _QuizPageState extends State<QuizPage> {
                 }
 
                 setState(() {
-                  question_num++;
+                  quizBrain.nextQuestion();
                 });
               },
             ),
