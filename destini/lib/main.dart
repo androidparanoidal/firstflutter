@@ -54,7 +54,9 @@ class _StoryPageState extends State<StoryPage> {
                       backgroundColor: Colors.red),
                   onPressed: () {
                     //Choice 1 made by user.
-                    storyBrain.nextStory(1);
+                    setState(() {
+                      storyBrain.nextStory(1);
+                    });
                   },
                   child: Text(
                     storyBrain.getChoice1(),
@@ -78,7 +80,9 @@ class _StoryPageState extends State<StoryPage> {
                       backgroundColor: Colors.blue),
                   onPressed: () {
                     //Choice 2 made by user.
-                    storyBrain.nextStory(2);
+                    setState(() {
+                      storyBrain.nextStory(2);
+                    });
                   },
                   child: Text(
                     storyBrain.getChoice2(),
