@@ -20,9 +20,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
     if (permission == LocationPermission.denied) {
       print('Denied');
     } else {
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.low);
-      print(position);
+      try {
+        Position position = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.low);
+        print(position);
+      } catch (exeption) {
+        print(exeption);
+      }
     }
   }
 
