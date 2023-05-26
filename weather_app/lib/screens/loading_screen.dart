@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:weather_app/services/location.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -14,20 +14,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getLocation() async {
-    LocationPermission permission;
-    permission = await Geolocator.checkPermission();
-    permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied) {
-      print('Denied');
-    } else {
-      try {
-        Position position = await Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.low);
-        print(position);
-      } catch (exeption) {
-        print(exeption);
-      }
-    }
+    Location location = Location();
+    await location.getCurrentLocation();
+    print(location.latitude);
+    print(location.longitude);
   }
 
   @override
