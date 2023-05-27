@@ -67,20 +67,29 @@ class _LocationScreenState extends State<LocationScreen> {
                       var weatherData = await weather.getLocationWeather();
                       updateUI(weatherData);
                     },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent),
                     child: Icon(
                       Icons.near_me,
                       size: 50.0,
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async {
+                      var typedName = await Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) {
                           return CityScreen();
                         }),
                       );
+                      if (typedName != null) {
+                        var weatherData =
+                            await weather.getCityWeather(typedName);
+                        updateUI(weatherData);
+                      }
                     },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent),
                     child: Icon(
                       Icons.location_city,
                       size: 50.0,
