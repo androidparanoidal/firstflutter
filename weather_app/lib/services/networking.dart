@@ -1,8 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-const APIKey = '7f3c57f0d9a7e1bb842c19930493a41b';
-
 class NetworkHelper {
   NetworkHelper(this.url);
   final String? url;
