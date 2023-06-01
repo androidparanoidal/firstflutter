@@ -49,13 +49,14 @@ class _PriceScreenState extends State<PriceScreen> {
     );
   }
 
-  // Widget getPicker() {
-  //   if (Platform.isIOS) {
-  //     return iOSPicker();
-  //   } else if (Platform.isAndroid) {
-  //     return androidDropdownButton();
-  //   }
-  // }
+  Widget getPicker() {
+    bool isIOS = Theme.of(context).platform == TargetPlatform.iOS;
+    if (isIOS) {
+      return iOSPicker();
+    } else {
+      return androidDropdownButton();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +95,7 @@ class _PriceScreenState extends State<PriceScreen> {
             alignment: Alignment.center,
             padding: EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
-            child: Platform.isIOS ? iOSPicker() : androidDropdownButton(),
+            child: getPicker(),
           ),
         ],
       ),
