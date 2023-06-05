@@ -10,7 +10,6 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String? selectedCurrency = 'AUD';
-  var bitcoinValue = '?';
 
   // Android picker
   DropdownButton<String> androidDropdownButton() {
@@ -124,7 +123,7 @@ class _PriceScreenState extends State<PriceScreen> {
             alignment: Alignment.center,
             padding: EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
-            child: getPicker(),
+            child: getPicker(), // or use this for checking iOS version
             //Platform.isAndroid ? iOSPicker() : androidDropdownButton(),
           ),
         ],
