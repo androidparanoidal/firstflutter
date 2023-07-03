@@ -3,7 +3,6 @@ import 'package:flashchat/screens/welcome_screen.dart';
 import 'package:flashchat/screens/login_screen.dart';
 import 'package:flashchat/screens/registration_screen.dart';
 import 'package:flashchat/screens/chat_screen.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
