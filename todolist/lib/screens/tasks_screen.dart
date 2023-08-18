@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/widgets/tasks_list.dart';
 import 'package:todolist/screens/add_task_screen.dart';
+import 'package:todolist/models/task.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: 'Купить молоко'),
+    Task(name: 'Выучить греческий'),
+    Task(name: 'Заработать миллион'),
+    Task(name: 'Встать в 4 утра'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,10 +23,18 @@ class TasksScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
-              backgroundColor: Colors.transparent,
-              // isScrollControlled: true,
-              context: context,
-              builder: (context) => AddTaskScreen());
+            backgroundColor: Colors.transparent,
+            // isScrollControlled: true,
+            context: context,
+            builder: (context) => AddTaskScreen(
+              (newTaskTitle) {
+                setState(() {
+                  tasks.add(Task(name: newTaskTitle));
+                });
+                Navigator.pop(context);
+              },
+            ),
+          );
         },
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add, size: 30.0),
@@ -46,7 +67,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '12 tasks',
+                  '${tasks.length} tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
@@ -58,13 +79,13 @@ class TasksScreen extends StatelessWidget {
           Expanded(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20.0),
                     topRight: Radius.circular(20.0)),
               ),
-              child: TasksList(),
+              child: TasksList(tasks),
             ),
           ),
         ],
